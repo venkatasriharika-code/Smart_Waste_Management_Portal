@@ -27,7 +27,7 @@ exports.adminLogin= async (req,res)=>{
     if(!validUser) return  res.status(200).send({message:`User Does'nt exist`});
     const validPass =await bcrypt.compare(password,validUser.password);
     if(!validPass) return res.status(200).send({message:`Wrong Password`});
-    const token = jwt.sign({id:validUser.id,email:email,role:"admin"},
+    const token = jwt.sign({id:validUser.id,email:email,role: validUser.role},
         process.env.JWT_SECRET_TOKEN,{expiresIn:'1h'}
     )
     res.status(200).send({message:`admin Login Successful `,data:validUser,token:token});
@@ -81,7 +81,7 @@ exports.adminChangePass = async (req,res)=>{
     try{
         const updateData = await prisma.User.update({
          where:{id:adminId},
-         data:{pass:newPass}
+         data:{password:newPass}
         })
          res.status(201).send({status:true,message:updateData});
     }catch(err){
