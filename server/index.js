@@ -15,6 +15,8 @@ app.use(express.json())//middleware
   next();
 });
 app.use('/api/user',userRouter);
+app.use('/api/admin',userRouter);
+app.use('/api/worker',userRouter);
 app.listen(process.env.PORT,()=>{
     console.log("App is running ");
    
