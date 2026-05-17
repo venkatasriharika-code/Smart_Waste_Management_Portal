@@ -40,10 +40,13 @@ exports.userLogin = async(req,res)=>{
    const {name,email,password,role} = req.body;
    console.log(req.body)
     try{
-    const validUser = await prisma.User.findFirst({where:{email:email,role:"user"}});
-    if(!validUser) res.status(200).send({message:`User Does'nt exist`});
-    const validPass =await bcrypt.compare(password,validUser.password);
-    if(!validPass) res.status(200).send({message:`Wrong Password`});
+const validUser = await prisma.User.findFirst({where:{email:email, role:"user"}});
+if(!validUser) return res.status(200).send({message:`User Doesn't exist`});
+//              ↑ add return here
+
+const validPass = await bcrypt.compare(password, validUser.password);  // now safe
+if(!validPass) return res.status(200).send({message:`Wrong Password`});
+//              ↑ add return here too
     const token = jwt.sign({id:validUser.id,email:email,role:"admin"},
         process.env.JWT_SECRET_TOKEN,{expiresIn:'1h'}
     )
