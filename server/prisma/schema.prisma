@@ -19,6 +19,6 @@ model User {
   name String?
   role String @default("user")
   createdAt  DateTime @default(now()) //current TimeStamp
-  email String
+  email String @unique
   password String
 }
