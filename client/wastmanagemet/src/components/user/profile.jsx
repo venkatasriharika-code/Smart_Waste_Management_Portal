@@ -75,13 +75,13 @@ export default function ProfilePage() {
   
   // State for user data (you would fetch this from an API)
   const [userData, setUserData] = useState({
-    fullName: 'John Doe',
+    fullName: 'Harry Pratty',
     mobile: '9876543210',
-    dob: '1995-08-15',
+    dob: '1993-06-26',
     gender: 'Male',
-    state: 'California',
-    district: 'Los Angeles',
-    email: 'john.doe@example.com',
+    state: 'Andhra Pradesh',
+    district: 'NTR District',
+    email: 'harrypratty1@gmail.com',
     userImage: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
   });
 
