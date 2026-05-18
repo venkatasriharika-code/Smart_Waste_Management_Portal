@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import bins from './assets/bins.png';
-import compostkit from './assets/compostkit.png';
-import wastedecomposer from './assets/wastedecomposer.png';
+import bins from '../../assets/bins.png';
+import compostkit from '../../assets/compostkit.png';
+import wastedecomposer from '../../assets/wastedecomposer.png';
 // Importing all necessary icons
 import {
   FaHome, FaSignInAlt, FaBook, FaQuestionCircle, FaGamepad, FaBroadcastTower,
