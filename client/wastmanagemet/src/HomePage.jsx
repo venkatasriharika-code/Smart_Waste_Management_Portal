@@ -74,7 +74,15 @@ export default function HomePage() {
 ></div>
 
         <div className="relative z-10 p-4">
-          <h2 className="text-5xl font-extrabold mb-4 ">Welcome to Smart Waste Management</h2>
+          <h2
+  className="text-5xl font-extrabold mb-4"
+  style={{
+    WebkitTextStroke: "2px black",
+    color: "white"
+  }}
+>
+  Welcome to Smart Waste Management
+</h2>
           <p className="text-lg mb-8">Step into an interactive world where you learn, play, and take actions that lead to big environmental change..</p>
 <Link
   to="/login"
