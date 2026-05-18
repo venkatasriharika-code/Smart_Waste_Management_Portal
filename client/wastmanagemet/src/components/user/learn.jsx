@@ -72,23 +72,31 @@ const Header = () => {
 // +++ Data for the Learning Modules
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const courses = [
-  {
-    icon: <FaRecycle />,
-    title: "Source Segregation",
-    tag: "45% waste reduction potential",
-    tagColor: "bg-green-100 text-green-800",
-    points: [
-      "Wet vs Dry waste classification",
-      "Color-coded bin system",
-      "Hazardous waste identification",
-      "Best practices for households",
-    ],
-  },
+{
+  icon: <FaRecycle />,
+  title: "Source Segregation",
+  tag: "45% waste reduction potential",
+  tagColor: "bg-green-100 text-green-800",
+
+  videoLink: "https://www.youtube.com/watch?v=0ZiFtRzYcjo",
+  articleLink: "https://www.unep.org/news-and-stories/story/waste-separation-its-benefits",
+
+  points: [
+    "Wet vs Dry waste classification",
+    "Color-coded bin system",
+    "Hazardous waste identification",
+    "Best practices for households",
+  ],
+},
   {
     icon: <FaLeaf />,
     title: "Composting Techniques",
     tag: "25% organic waste diverted",
     tagColor: "bg-green-100 text-green-800",
+
+    videoLink: "https://www.youtube.com/watch?v=bqDQD8cvO5Y",
+    articleLink: "https://www.epa.gov/recycle/composting-home",
+
     points: [
       "Home composting methods",
       "Vermicomposting setup",
@@ -96,9 +104,14 @@ const courses = [
       "Troubleshooting common issues",
     ],
   },
+
   {
     icon: <FaHourglassHalf />,
     title: "How Waste Management Works?",
+
+    videoLink: "https://www.youtube.com/watch?v=FvPakzqM3h8",
+    articleLink: "https://www.ibm.com/topics/waste-management",
+
     points: [
       "Waste generation: Understanding the source",
       "Collection: The first step in the chain",
@@ -108,9 +121,14 @@ const courses = [
       "Final Disposal: Landfills and beyond",
     ],
   },
+
   {
     icon: <FaLandmark />,
     title: "Case Studies & Incidents (India)",
+
+    videoLink: "https://www.youtube.com/watch?v=Yiei4BRL3JQ",
+    articleLink: "https://www.downtoearth.org.in/tag/waste-management",
+
     points: [
       "Ghaziabad Landfill fire: A lesson in safety",
       "Indore: Cleanest city success story",
@@ -119,9 +137,14 @@ const courses = [
       "Surat: Swachh Bharat Success Story (Gujarat)",
     ],
   },
+
   {
     icon: <FaTrash />,
     title: "Types of Waste Generated",
+
+    videoLink: "https://www.youtube.com/watch?v=Jzv0hH-V6k0",
+    articleLink: "https://byjus.com/biology/types-of-waste/",
+
     points: [
       "Wet / Organic Waste: From kitchen to compost",
       "Dry Waste: Paper, plastic, glass, and metal",
@@ -129,9 +152,14 @@ const courses = [
       "Hazardous Waste: Batteries, paints, and chemicals",
     ],
   },
+
   {
     icon: <FaUserFriends />,
     title: "What Citizens Can Do?",
+
+    videoLink: "https://www.youtube.com/watch?v=OasbYWF4_S8",
+    articleLink: "https://www.un.org/en/actnow",
+
     points: [
       "Segregation at home: The power of one",
       "Composting Kitchen Waste: Turn scraps into soil",
@@ -139,9 +167,14 @@ const courses = [
       "Participating in Cleanliness Drives",
     ],
   },
+
   {
     icon: <FaLightbulb />,
     title: "Future of Waste Management",
+
+    videoLink: "https://www.youtube.com/watch?v=6jQ7y_qQYUA",
+    articleLink: "https://www.worldbank.org/en/topic/urbandevelopment/brief/solid-waste-management",
+
     points: [
       "Smart Bins with IoT sensors",
       "AI for Waste Sorting and efficiency",
@@ -150,7 +183,6 @@ const courses = [
     ],
   },
 ];
-
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // +++ MAIN LEARN PAGE COMPONENT
@@ -225,14 +257,26 @@ const CourseCard = ({ course }) => (
         {course.points.map((point, i) => <li key={i}>{point}</li>)}
       </ul>
     </div>
-    <div className="bg-gray-50 p-4 flex justify-end gap-4 border-t">
-      <button className="flex items-center gap-2 text-sm font-semibold text-red-800 hover:text-cyan-800">
-        <FaPlayCircle /> Watch Video
-      </button>
-      <button className="flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-black">
-        <FaFileAlt /> Read More
-      </button>
-    </div>
+   <div className="bg-gray-50 p-4 flex justify-end gap-4 border-t">
+
+  <a
+    href={course.videoLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-2 text-sm font-semibold text-red-800 hover:text-cyan-800"
+  >
+    <FaPlayCircle /> Watch Video
+  </a>
+
+  <a
+    href={course.articleLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-black"
+  >
+    <FaFileAlt /> Read More
+  </a>
+
+</div>
   </div>
 );
-
