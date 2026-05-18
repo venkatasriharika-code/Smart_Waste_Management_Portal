@@ -114,15 +114,38 @@ const products = [
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function PurchasePage() {
   const [activeCategory, setActiveCategory] = useState('All Products');
-  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
-  const handleAddToCart = () => {
-    setCartCount(prevCount => prevCount + 1);
-  };
+ const handleAddToCart = (product) => {
+  const existingItem = cartItems.find(
+    item => item.id === product.id
+  );
 
+  if (existingItem) {
+    const updatedCart = cartItems.map(item =>
+      item.id === product.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
+
+    setCartItems(updatedCart);
+  } else {
+    setCartItems([
+      ...cartItems,
+      { ...product, quantity: 1 }
+    ]);
+  }
+};
+
+const filteredProducts =
+  activeCategory === 'All Products'
+    ? products
+    : products.filter(
+        product => product.category === activeCategory
+      );
   return (
     <div className="bg-gray-50 min-h-screen">
-      <Header cartCount={cartCount} />
+      <Header />
 
       <main className="container mx-auto py-10 px-4">
         {/* Page Title */}
@@ -148,10 +171,52 @@ export default function PurchasePage() {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
           ))}
         </div>
+        {/* VIEW CART SECTION */}
+<div className="mt-16 bg-white rounded-xl shadow-md p-6">
+  <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+    <FaShoppingCart className="text-green-600" />
+    View Cart
+  </h2>
+
+  {cartItems.length === 0 ? (
+    <p className="text-gray-500">Your cart is empty.</p>
+  ) : (
+    <div className="space-y-4">
+      {cartItems.map(item => (
+        <div
+          key={item.id}
+          className="flex items-center justify-between border-b pb-4"
+        >
+          <div className="flex items-center gap-4">
+            <img
+              src={item.image_url}
+              alt={item.name}
+              className="w-20 h-20 object-cover rounded-lg"
+            />
+
+            <div>
+              <h3 className="font-bold text-gray-800">
+                {item.name}
+              </h3>
+
+              <p className="text-gray-500 text-sm">
+                Quantity: {item.quantity}
+              </p>
+            </div>
+          </div>
+
+          <p className="font-bold text-green-700">
+            ₹{item.price * item.quantity}
+          </p>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
       </main>
     </div>
   );
@@ -196,13 +261,24 @@ const ProductCard = ({ product, onAddToCart }) => (
         <p className="text-green-600 font-semibold">{product.discount}</p>
       </div>
       
-      <button 
-        onClick={onAddToCart}
-        className=""
-      >
-         Add to Cart
-      </button>
-    </div>
-  </div>
+     <div className="flex gap-3 mt-6">
+
+  <button
+    onClick={() => onAddToCart(product)}
+    className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition duration-300 flex items-center justify-center gap-2 shadow-md"
+  >
+    <FaCartPlus />
+    Add to Cart
+  </button>
+
+  <button
+    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition duration-300 shadow-md"
+  >
+    Buy Now
+  </button>
+
+</div>
+    </div>     
+</div>
 );
 
