@@ -68,14 +68,14 @@ export default function HomePage() {
   className="absolute inset-0 bg-cover bg-center"
   style={{
     backgroundImage: `url(${heroBg})`,
-     filter: "blur(4px)",
+     filter: "blur(6px)",
     transform: "scale(1.05)"
   }}
 ></div>
 
         <div className="relative z-10 p-4">
           <h2 className="text-5xl font-extrabold mb-4 ">Welcome to Smart Waste Management</h2>
-          <p className="text-lg mb-8">Join the eco-revolution with gamified waste management.</p>
+          <p className="text-lg mb-8">Step into an interactive world where you learn, play, and take actions that lead to big environmental change..</p>
 <Link
   to="/login"
   className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105 inline-block"
