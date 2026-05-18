@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { apiUrl } from '../../config/api.js';
+import bg from '../../assets/image.png';
 
-const bg = 'https://placehold.co/1920x1080/166534/ffffff?text=Smart+Waste+Portal';
 
 // --- Helper Functions ---
 
@@ -112,7 +112,7 @@ export default function App() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('${bg}')`,
+          backgroundImage: `url("${bg"})`,
           filter: "blur(6px)",
           transform: "scale(1.05)"
         }}
