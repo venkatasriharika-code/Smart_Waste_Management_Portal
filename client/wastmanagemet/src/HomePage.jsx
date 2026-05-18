@@ -30,10 +30,10 @@ export default function HomePage() {
         {/* Lighter Green Ticker Bar */}
         <div className="bg-green-600 text-white py-2 overflow-hidden whitespace-nowrap">
           <div className="animate-marquee flex gap-8">
-            <span className="flex items-center gap-2"># Track your nearby waste vehicle!</span>
-            <span className="flex items-center gap-2"># Real-time GPS tracking available</span>
-            <span className="flex items-center gap-2"># Get accurate ETA predictions</span>
-            <span className="flex items-center gap-2"># Track your nearest collection points</span>
+            <span className="flex items-center gap-2"> 🚨Track your nearby waste vehicle!</span>
+            <span className="flex items-center gap-2"> 🚨Real-time GPS tracking available</span>
+            <span className="flex items-center gap-2"> 🚨Get accurate ETA predictions</span>
+            <span className="flex items-center gap-2"> 🚨Track your nearest collection points</span>
           </div>
         </div>
       </header>
@@ -71,21 +71,22 @@ export default function HomePage() {
   }}
 ></div>
 
-<div className="absolute inset-0 bg-black bg-opacity-5"></div>
         <div className="relative z-10 p-4">
           <h2 className="text-5xl font-extrabold mb-4 ">Welcome to Smart Waste Management</h2>
           <p className="text-lg mb-8">Join the eco-revolution with gamified waste management.</p>
-          <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105">
-            Start Your Eco Journey
-          </button>
-        </div>
+<Link
+  to="/login"
+  className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105 inline-block"
+>
+  Start Your Eco Journey
+</Link>        </div>
       </main>
 
       {/* ===== Statistics Section (NEW) ===== */}
       <section className="bg-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <StatCard icon={<FaUsers className="text-blue-500" />} value="50K+" label="Active Users" />
+            <StatCard icon={<FaUsers className="text-blue-500" />} value="20K+" label="Active Users" />
             <StatCard icon={<FaRecycle className="text-green-500" />} value="2.5M kg" label="Waste Recycled" />
             <StatCard icon={<FaBullseye className="text-green-500" />} value="1.2M" label="Eco Points Earned" />
             <StatCard icon={<FaChartLine className="text-blue-500" />} value="30%" label="Carbon Footprint Reduced" />
@@ -100,22 +101,22 @@ export default function HomePage() {
             <FeatureCard
               icon={<FaBookOpen />}
               title="Interactive Learning"
-              description="Master waste segregation through engaging educational content"
+              description="Interactive learning platform designed to educate users about waste segregation, recycling methods, eco-friendly practices, and sustainable waste management through engaging activities and educational content."
             />
             <FeatureCard
               icon={<FaGamepad />}
               title="Eco Tycoon Game"
-              description="Play, collect, sort, and sell waste while learning sustainability"
+              description="Gamified waste management experience where users collect, sort, recycle, and manage waste while learning sustainable environmental practices."
             />
             <FeatureCard
               icon={<FaBroadcastTower />}
               title="Real-time Tracking"
-              description="Track waste collection vehicles in your area with live GPS"
+              description="Live GPS-based tracking system for monitoring waste collection vehicles, nearby collection points, and estimated arrival times."
             />
             <FeatureCard
               icon={<FaFingerprint />}
               title="Smart Technology"
-              description="Biometric authentication and geo-tagging for workers"
+              description="Advanced smart waste management features including geo-tagging, biometric authentication, and digital monitoring for efficient operations."
             />
           </div>
         </div>
