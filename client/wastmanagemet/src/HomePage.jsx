@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import heroBg from './assets/homepage.png';
+import {FaCommentDots, FaTimes, FaPaperPlane } from "react-icons/fa";
 
 // Importing all necessary icons from react-icons
 import {
@@ -68,21 +69,13 @@ export default function HomePage() {
   className="absolute inset-0 bg-cover bg-center"
   style={{
     backgroundImage: `url(${heroBg})`,
-     filter: "blur(6px)",
+     filter: "blur(9px)",
     transform: "scale(1.05)"
   }}
 ></div>
 
         <div className="relative z-10 p-4">
-          <h2
-  className="text-5xl font-extrabold mb-4"
-  style={{
-    WebkitTextStroke: "2px black",
-    color: "white"
-  }}
->
-  Welcome to Smart Waste Management
-</h2>
+          <h2 className="text-5xl font-extrabold mb-4 ">Welcome to Smart Waste Management</h2>
           <p className="text-lg mb-8">Step into an interactive world where you learn, play, and take actions that lead to big environmental change..</p>
 <Link
   to="/login"
@@ -133,6 +126,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== Bottom Navigation Bar ===== */}
+      <ChatWidget />
       <footer className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_5px_rgba(0,0,0,0.1)] z-50">
         <div className="container mx-auto flex justify-around p-2">
 
@@ -140,9 +134,7 @@ export default function HomePage() {
       </footer>
 
       {/* ===== Floating Action Button ===== */}
-      <button className="fixed bottom-20 right-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-50">
-        <FaCommentDots size={24} />
-      </button>
+     
 
     </div>
   );
@@ -191,3 +183,85 @@ const FeatureCard = ({ icon, title, description }) => (
     </div>
   </div>
 );
+const ChatWidget = () => {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { sender: "bot", text: "Hi 👋 I’m your Eco Assistant. How can I help you?" }
+  ]);
+  const [input, setInput] = useState("");
+
+  const sendMessage = () => {
+    if (!input.trim()) return;
+
+    const userMsg = { sender: "user", text: input };
+    setMessages((prev) => [...prev, userMsg]);
+
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Got it 👍 I’ll help you with your query!" }
+      ]);
+    }, 600);
+
+    setInput("");
+  };
+
+  return (
+    <>
+      {/* Floating Button */}
+      <button
+        onClick={() => setOpen(prev => !prev)}
+        className="fixed bottom-20 right-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-50"
+      >
+        <FaCommentDots size={22} />
+      </button>
+
+      {/* Chat Box */}
+      {open && (
+        <div className="fixed bottom-20 right-8 w-[90vw] max-w-sm h-[70vh] bg-white rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+
+          {/* Header */}
+          <div className="bg-green-600 text-white flex justify-between items-center p-3">
+            <h2 className="font-semibold">Eco Assistant</h2>
+            <button onClick={() => setOpen(false)}>
+              <FaTimes />
+            </button>
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 p-3 overflow-y-auto bg-gray-50 space-y-2">
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`max-w-[80%] px-3 py-2 rounded-lg text-sm ${
+                  msg.sender === "user"
+                    ? "ml-auto bg-green-500 text-white"
+                    : "mr-auto bg-gray-200 text-gray-800"
+                }`}
+              >
+                {msg.text}
+              </div>
+            ))}
+          </div>
+
+          {/* Input */}
+          <div className="p-2 border-t flex gap-2">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              placeholder="Type a message..."
+              className="flex-1 border rounded-lg px-3 py-2 text-sm"
+            />
+            <button
+              onClick={sendMessage}
+              className="bg-green-600 text-white px-3 rounded-lg"
+            >
+              <FaPaperPlane />
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
