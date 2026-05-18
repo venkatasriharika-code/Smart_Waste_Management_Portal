@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-const smartbin =
-  'https://placehold.co/400x300/22c55e/ffffff?text=Smart+Bin';
+import bins from './assets/bins.png';
 
 // Importing all necessary icons
 import {
@@ -73,7 +72,7 @@ const products = [
   {
     id: 1,
     name: "Smart Segregation Bin Set",
-    image_url: smartbin,
+    image_url: bins,
     description: "3-compartment smart bin with sensors for wet, dry, and hazardous waste.",
     rating: 4.8,
     reviews: 156,
